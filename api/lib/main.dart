@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 class Post {
-  final int useId;
+  final int userId;
   final int id;
   final String title;
   final String body;
-  Post(this.useId, this.id, this.title, this.body);
+  Post(this.userId, this.id, this.title, this.body);
 
   factory Post.fromJson(Map<String, dynamic> jsonObject) {
-    return Post(jsonObject["useId"] as int, jsonObject["id"] as int,
+    return Post(jsonObject["userId"] as int, jsonObject["id"] as int,
         jsonObject["title"] as String, jsonObject["body"] as String);
   }
 }
@@ -34,11 +34,7 @@ Future<Post> getPostFromBackend() async {
   }
 }
 
-void doSomething() async {
+void main() async {
   Post post = await getPostFromBackend();
-  print(post);
-}
-
-void main(List<String> args) {
-  doSomething();
+  print(post.title);
 }
